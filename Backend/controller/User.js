@@ -78,49 +78,28 @@ import jwt from "jsonwebtoken"
     if (!user) {
       return res.status(400).json({ message: "Invalid Credentials" });
     }
-     const userPassword = user.password;
+    bcrypt.compare(password, user.password, (err, data) => {
+      if (data) {
+        const authClaims = [
+          { name: user.username },
+          { role: user.role },
+          { jti: jwt.sign({}, "bookStore123") },
+        ];
+        const token = jwt.sign({ authClaims }, "bookStore123", {
+          expiresIn: "30d",
+        });
 
+        res.json({
+          _id: user._id,
+          role: user.role,
+          token,
+        });
+      } else {
+        return res.status(400).json({ message: "Invalid credentials" });
+      }
+    });
 
- const isMatch = await bcrypt.compare(password, userPassword); // compare the password of inputPassword with exist password
-    if (!isMatch) {
-      return res.status(400).json({ message: "incorrect password" });
-    }
-
-    // creating token for create cookie
-    const token = jwt.sign({ id: user._id.toString(), role:user.role}, process.env.JWT_SECRET); // process.env.JWT_SECRET, secret key
-
-    // send cookie as identity card
-    // res.cookie("token",token);
-
-    return res
-      .cookie("token", token, {
-        httpOnly: true,
-        expires: new Date(Date.now() + 24 * 60 * 60 * 1000),
-      })
-      .json({ message: "Login successfully", user, success: true });
-
-
-    // bcrypt.compare(password, userPassword, (err, data) => {
-    //   if (data) {
-    //     const authClaims = [
-    //       { name: user.username },
-    //       { role: user.role },
-    //       { jti: jwt.sign({}, "bookStore123") },
-    //     ];
-    //     const token = jwt.sign({ authClaims }, "bookStore123", {
-    //       expiresIn: "30d",
-    //     });
-
-    //     res.json({
-    //       _id: user._id,
-    //       role: user.role,
-    //       token,
-    //     });
-    //   } else {
-    //     return res.status(400).json({ message: "Invalid credentials" });
-    //   }
-    // });
-
+   
   } catch (error) {
     return res.status(400).json({ message: "Internal Error" });
   }
@@ -129,7 +108,7 @@ import jwt from "jsonwebtoken"
 //Get Users (individual) Profile Data
 export const getUserData= async (req, res) => {
   try {
-   const  id  = req.user._id;
+    const { id } = req.headers;
 
     const data = await UserModel.findById(id);
     console.log("data->",data);
@@ -142,7 +121,7 @@ export const getUserData= async (req, res) => {
 //Update address
 export const UpdateUserAddress= async (req, res) => {
   try {
-    const  id  = req.user._id;
+    const { id } = req.headers;
     const { address } = req.body;
     await UserModel.findByIdAndUpdate(id, { address });
     return res.status(200).json({
