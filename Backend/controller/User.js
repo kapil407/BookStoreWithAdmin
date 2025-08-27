@@ -3,7 +3,7 @@
 import bcrypt from 'bcryptjs'
 import UserModel from '../models/UserModel.js';
 import jwt from "jsonwebtoken"
-
+import validator from 'validator';
 
 //Sign - u
  export const SignUp= async (req, res) => {
@@ -18,13 +18,12 @@ import jwt from "jsonwebtoken"
     }
 
     // Validate email format
-    const emailRegex = /\S+@\S+\.\S+/;
-    if (!emailRegex.test(req.body.email)) {
-      return res.status(400).json({
-        status: "Error",
-        message: "Invalid email format. Please enter a valid email address.",
-      });
-    }
+   
+
+const email = req.body.email;
+if (!validator.isEmail(email)) {
+  return res.status(400).json({ message: "Invalid email address" });
+}
 
     //Check the length of password
     const password = req.body.password;
