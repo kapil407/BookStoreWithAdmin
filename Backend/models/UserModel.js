@@ -1,5 +1,6 @@
 import mongoose from 'mongoose'
 
+
 const UserSchema = new mongoose.Schema(
   {
     username: {
@@ -22,6 +23,7 @@ const UserSchema = new mongoose.Schema(
       type: String,
       default: "https://cdn-icons-png.flaticon.com/128/3177/3177440.png",
     },
+
     role: {
       type: String,
       default: "user",
