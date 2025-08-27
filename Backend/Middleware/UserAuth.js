@@ -12,6 +12,7 @@ const UserAuth=async (req, res, next) => {
     if (err) {
       return res.status(403).json(err);
     }
+    
     req.user = user;
     next();
   });
