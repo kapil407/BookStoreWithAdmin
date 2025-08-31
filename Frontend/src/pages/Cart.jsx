@@ -38,12 +38,13 @@ const Cart = () => {
     if (cart && cart.length > 0) {
       let total = 0;
       cart.map((items) => {
+        // console.log("price->",items.price);
         total += items.price;
       });
       setTotal(total);
       total = 0;
     }
-  }, [isLoggedIn]);
+  }, [cart]);
   const deletItem = async (id) => {
     try {
       const response = await axios.put(
