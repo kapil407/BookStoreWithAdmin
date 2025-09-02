@@ -75,7 +75,7 @@ const ViewBookDetails = () => {
               <img
                 src={Book.url}
                 alt="book"
-                className="h-[50vh] md:h-[70vh] rounded "
+                className="h-[50vh] md:h-[70vh] rounded object-cover"
               />
               {localStorage.getItem("id") && (
                 <div className=" w-full md:w-auto flex flex-row md:flex-col justify-between md:justify-start items-center  mt-4 md:mt-0  ">

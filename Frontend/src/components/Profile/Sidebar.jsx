@@ -10,7 +10,7 @@ const Sidebar = ({ ProfileData }) => {
   return (
     <div className="h-auto lg:h-[100%] flex flex-col p-3 items-center justify-between">
       <div className="flex flex-col items-center w-full">
-        <img src={ProfileData.avatar} alt="profile" className="h-[10vh]" />
+        <img src={ProfileData.avatar} alt="profile" className="h-[10vh] object-cover" />
         <p className="mt-3 text-xl text-zinc-100 font-semibold">
           {ProfileData.username}
         </p>

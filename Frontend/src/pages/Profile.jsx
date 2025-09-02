@@ -5,7 +5,7 @@ import { Outlet, useNavigate } from "react-router-dom";
 import { useSelector } from "react-redux";
 import Sidebar from "../components/Profile/Sidebar";
 import Loader from "./Loader";
-import MobileBar from "../components/Profile/MobileBar";
+// import MobileBar from "../components/Profile/MobileBar";
 
 const Profile = () => {
   const [ProfileData, setProfileData] = useState();
@@ -42,8 +42,7 @@ const Profile = () => {
             <div className="h-auto lg:h-[80vh] w-full lg:w-1/6 bg-zinc-800 rounded-lg">
               <Sidebar ProfileData={ProfileData} />
             </div>
-            {/* Mobile Bar  */}
-            <MobileBar />
+          
             <div className="h-[100%] w-full lg:w-5/6  rounded-lg">
               <Outlet />
             </div>

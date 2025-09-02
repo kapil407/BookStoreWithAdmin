@@ -1,52 +1,50 @@
 import React, { useState } from "react";
 import axios from "axios";
+import { FaImage } from "react-icons/fa";
 const AddBook = () => {
-  const [Data, setData] = useState({
-    url: "",
-    title: "",
-    author: "",
-    price: "",
-    desc: "",
-    language: "",
-  });
+  const [author, setAuther] = useState("");
+  const [title, setTitle] = useState("");
+  const [url, setUrl] = useState("");
+  const [price, setPrice] = useState("");
+  const [desc, setDecrip] = useState("");
+  const [language, setLanguage] = useState("");
   const headers = {
     id: localStorage.getItem("id"),
     authorization: `Bearer ${localStorage.getItem("token")}`,
   };
 
-  const change = (e) => {
-    const { name, value } = e.target;
-    setData({ ...Data, [name]: value });
-  };
+ 
   const submit = async () => {
+  let formData = new FormData();
+  formData.append("title", title);
+  formData.append("author", author);
+  formData.append("url", url);
+  formData.append("price", price);
+  formData.append("desc", desc);
+  formData.append("language", language);
     try {
-      if (
-        Data.url === "" ||
-        Data.title === "" ||
-        Data.author === "" ||
-        Data.price === "" ||
-        Data.desc === "" ||
-        Data.language === ""
-      ) {
-        alert("All fields are required");
-      } else {
-        const response = await axios.post(
-          "http://localhost:1000/api/v1/add-book",
-          Data,
-          { headers }
-        );
-        setData({
-          url: "",
-          title: "",
-          author: "",
-          price: "",
-          desc: "",
-          language: "",
-        });
-        alert(response.data.message);
+      console.log(title);
+      console.log(author);
+      console.log(price);
+      console.log(desc);
+      console.log(language);
+      console.log(url);
+
+      const response = await axios.post(
+        "http://localhost:1000/api/v1/add-book",
+        formData,
+        {
+        headers: {
+          ...headers,
+          "Content-Type": "multipart/form-data",
+        },
       }
+      );
+
+      console.log("Book-> ", response);
     } catch (error) {
-      alert(error.response.data.message);
+      // (error.response.data.message);
+      console.log(error);
     }
   };
 
@@ -57,18 +55,18 @@ const AddBook = () => {
       </h1>
       <div className="p-4 bg-zinc-800 rounded">
         <div>
-          <label htmlFor="" className="text-zinc-400">
-            Image
-          </label>
+          
           <input
-            type="text"
-            className="w-full mt-2 bg-zinc-900 text-zinc-100 p-2 outline-none"
-            placeholder="url of image"
-            name="url"
+            type="file"
+            id="uploadImage"
+            className="hidden"
             required
-            value={Data.url}
-            onChange={change}
+            onChange={(e) => setUrl(e.target.files[0])} // file object store
           />
+          <label htmlFor="uploadImage" className="text-xl text-blue-200 cursor-pointer">
+          Select image
+          </label>
+ <FaImage className="text-2xl text-blue-200 cursor-pointer"/>
         </div>
         <div className="mt-4">
           <label htmlFor="" className="text-zinc-400">
@@ -80,8 +78,8 @@ const AddBook = () => {
             placeholder="title of book"
             name="title"
             required
-            value={Data.title}
-            onChange={change}
+            value={title}
+            onChange={(e) => setTitle(e.target.value)}
           />
         </div>
         <div className="mt-4">
@@ -94,8 +92,8 @@ const AddBook = () => {
             placeholder="author of book"
             name="author"
             required
-            value={Data.author}
-            onChange={change}
+            value={author}
+            onChange={(e) => setAuther(e.target.value)}
           />
         </div>
         <div className="mt-4 flex gap-4">
@@ -109,8 +107,8 @@ const AddBook = () => {
               placeholder="language of book"
               name="language"
               required
-              value={Data.language}
-              onChange={change}
+              value={language}
+              onChange={(e) => setLanguage(e.target.value)}
             />
           </div>
           <div className="w-3/6">
@@ -123,8 +121,8 @@ const AddBook = () => {
               placeholder="price of book"
               name="price"
               required
-              value={Data.price}
-              onChange={change}
+              value={price}
+              onChange={(e) => setPrice(e.target.value)}
             />
           </div>
         </div>
@@ -138,8 +136,8 @@ const AddBook = () => {
             placeholder="description of book"
             name="desc"
             required
-            value={Data.desc}
-            onChange={change}
+            value={desc}
+            onChange={(e) => setDecrip(e.target.value)}
           />
         </div>
 

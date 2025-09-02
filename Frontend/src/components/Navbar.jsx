@@ -39,7 +39,7 @@ const Navbar = () => {
     links.splice(4, 1);
   }
   if (role === "admin") {
-    links.splice(3, 1);
+    links.splice(2, 2);
   }
 
   return (

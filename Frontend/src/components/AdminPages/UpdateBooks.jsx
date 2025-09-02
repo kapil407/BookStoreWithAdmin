@@ -77,7 +77,7 @@ const UpdateBooks = () => {
           </label>
           <input
             type="text"
-            className="w-full mt-2 bg-zinc-900 text-zinc-100 p-2 outline-none"
+            className="w-full mt-2 bg-zinc-900 text-zinc-100 object-cover p-2 outline-none"
             placeholder="url of image"
             name="url"
             required
