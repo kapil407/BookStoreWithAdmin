@@ -8,7 +8,7 @@ export const PlaceOrder=async (req, res) => {
   try {
     const { id } = req.headers;
     const { order } = req.body;
-    for (const orderData of OrderModel) {
+    for (const orderData of order) {
       const newOrder = new OrderModel({ user: id, book: orderData._id });
       const orderDataFromDb = await newOrder.save();
       //saving Order in user model

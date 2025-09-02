@@ -1,6 +1,7 @@
 
 import express from 'express'
 import UserAuth from '../Middleware/UserAuth.js';
+import upload from '../Middleware/Multer.js';
 import  
 {AddBook,
   UpdateBook,
@@ -13,7 +14,7 @@ import
 const Bookrouter=express.Router();
 
 //create book -- admin
-Bookrouter.post("/add-book", UserAuth, AddBook);
+Bookrouter.post("/add-book", UserAuth , upload.single("url"), AddBook);
 
 //update book --admin
 Bookrouter.put("/update-book", UserAuth,UpdateBook);

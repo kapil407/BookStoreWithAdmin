@@ -4,12 +4,19 @@ import Book from "../models/BookModel.js";
 
 
 import User from "../models/UserModel.js";
-
+import uploadCloudinary from "../Middleware/Cloudinary.js";
 //create book -- admin
 export const AddBook= async (req, res) => {
   try {
+let Imageurl;
+
+    if(req.file){
+      console.log("file",req.file);
+      const image=await uploadCloudinary(req.file);
+      Imageurl=image ;
+    }
     const book = new Book({
-      url: req.body.url,
+      url: Imageurl,
       title: req.body.title,
       author: req.body.author,
       price: req.body.price,
@@ -20,10 +27,11 @@ export const AddBook= async (req, res) => {
     return res.json({
       status: "Success",
       message: "Book added successfully!",
+       data:book
     });
   } catch (error) {
     console.log(error);
-    return res.status(500).json({ message: "An error occurred" });
+    return res.status(500).json({ message: "kapil An error occurred" });
   }
 };
 
