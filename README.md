@@ -30,26 +30,44 @@ Dashboard with analytics overview (optional).
 🗂️ Folder Structure
 
 BookStore/
+
 │
 ├── backend/
+
 │   ├── server.js
+
 │   ├── config/
+
 │   ├── controllers/
+
 │   ├── models/
+
 │   ├── routes/
+
 │   └── middleware/
+
 │
 ├── frontend/
+
 │   ├── src/
+
 │   │   ├── components/
+
 │   │   ├── pages/
+
 │   │   ├── redux/
+
 │   │   ├── App.jsx
+
 │   │   └── main.jsx
+
 │   └── public/
+
 │
 ├── package.json
+
 ├── README.md
+
 └── .env
 
 
