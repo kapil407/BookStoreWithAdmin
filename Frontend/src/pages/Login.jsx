@@ -25,7 +25,7 @@ const Login = () => {
       } else {
         const response = await axios.post(
           "http://localhost:1000/api/v1/login",
-          Data
+          Data,
         );
         setData({ username: "", password: "" });
         dispatch(authActions.login());

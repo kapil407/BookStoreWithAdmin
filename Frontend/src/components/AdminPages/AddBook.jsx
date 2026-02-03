@@ -13,15 +13,14 @@ const AddBook = () => {
     authorization: `Bearer ${localStorage.getItem("token")}`,
   };
 
- 
   const submit = async () => {
-  let formData = new FormData();
-  formData.append("title", title);
-  formData.append("author", author);
-  formData.append("url", url);
-  formData.append("price", price);
-  formData.append("desc", desc);
-  formData.append("language", language);
+    let formData = new FormData();
+    formData.append("title", title);
+    formData.append("author", author);
+    formData.append("url", url);
+    formData.append("price", price);
+    formData.append("desc", desc);
+    formData.append("language", language);
     try {
       console.log(title);
       console.log(author);
@@ -34,14 +33,14 @@ const AddBook = () => {
         "http://localhost:1000/api/v1/add-book",
         formData,
         {
-        headers: {
-          ...headers,
-          "Content-Type": "multipart/form-data",
-        },
-      }
+          headers: {
+            ...headers,
+            "Content-Type": "multipart/form-data",
+          },
+        }
       );
 
-      console.log("Book-> ", response);
+      alert(response.data.message);
     } catch (error) {
       // (error.response.data.message);
       console.log(error);
@@ -55,7 +54,6 @@ const AddBook = () => {
       </h1>
       <div className="p-4 bg-zinc-800 rounded">
         <div>
-          
           <input
             type="file"
             id="uploadImage"
@@ -63,10 +61,13 @@ const AddBook = () => {
             required
             onChange={(e) => setUrl(e.target.files[0])} // file object store
           />
-          <label htmlFor="uploadImage" className="text-xl text-blue-200 cursor-pointer">
-          Select image
+          <label
+            htmlFor="uploadImage"
+            className="text-xl text-blue-200 cursor-pointer"
+          >
+            Select image
           </label>
- <FaImage className="text-2xl text-blue-200 cursor-pointer"/>
+          <FaImage className="text-2xl text-blue-200 cursor-pointer" />
         </div>
         <div className="mt-4">
           <label htmlFor="" className="text-zinc-400">

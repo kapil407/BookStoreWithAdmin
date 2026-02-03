@@ -3,14 +3,51 @@ import { Link, useNavigate } from "react-router-dom";
 import { FaArrowRightFromBracket } from "react-icons/fa6";
 import { useDispatch, useSelector } from "react-redux";
 import { authActions } from "../../store/auth";
-const Sidebar = ({ ProfileData }) => {
+// import { useState } from "react";
+import { FaImage } from "react-icons/fa6";
+import { ClipLoader } from "react-spinners";
+const Sidebar = ({
+  ProfileData,
+  setImage,
+  image,
+  updateProfileImage,
+  loading,
+}) => {
   const dispatch = useDispatch();
   const history = useNavigate();
   const role = useSelector((state) => state.auth.role);
+
   return (
     <div className="h-auto lg:h-[100%] flex flex-col p-3 items-center justify-between">
       <div className="flex flex-col items-center w-full">
-        <img src={ProfileData.avatar} alt="profile" className="h-[10vh] object-cover" />
+        {loading ? (
+          <ClipLoader className="h-45" />
+        ) : (
+          <img
+            src={ProfileData.avatar}
+            alt="profile"
+            className="h-[15vh] w-[45%]  object-cover rounded-full"
+          />
+        )}
+        <input
+          type="file"
+          accept="image/*"
+          hidden
+          id="photo"
+          onChange={(e) => setImage(e.target.files[0])}
+        />
+        <label htmlFor="photo">
+          <FaImage size={22} className="cursor-pointer ml-10 text-gray-200" />
+        </label>
+
+        {image && (
+          <button
+            onClick={updateProfileImage}
+            className=" border border-gray-400 h-15 bg-gray-200 text-gray-600 "
+          >
+            upload
+          </button>
+        )}
         <p className="mt-3 text-xl text-zinc-100 font-semibold">
           {ProfileData.username}
         </p>

@@ -32,7 +32,7 @@ const Signup = () => {
       } else {
         const response = await axios.post(
           "http://localhost:1000/api/v1/sign-up",
-          Data
+          Data,
         );
         setData({ username: "", email: "", password: "", address: "" });
         alert(response.data.message);
