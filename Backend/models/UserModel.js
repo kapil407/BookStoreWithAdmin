@@ -19,9 +19,9 @@ const UserSchema = new mongoose.Schema(
     address: {
       type: String,
     },
-    image: {
+    avatar: {
       type: String,
-      default: "",
+      default: "https://cdn-icons-png.flaticon.com/128/3177/3177440.png",
     },
 
     role: {

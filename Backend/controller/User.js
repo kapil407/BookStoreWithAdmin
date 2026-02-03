@@ -1,12 +1,11 @@
-
-
-import bcrypt from 'bcryptjs'
-import UserModel from '../models/UserModel.js';
-import jwt from "jsonwebtoken"
-import validator from 'validator';
+import bcrypt from "bcryptjs";
+import UserModel from "../models/UserModel.js";
+import jwt from "jsonwebtoken";
+import validator from "validator";
+import uploadCloudinary from "../Middleware/Cloudinary.js";
 
 //Sign - u
- export const SignUp= async (req, res) => {
+export const SignUp = async (req, res) => {
   try {
     // Validate username format
     const usernameLength = req.body.username.length;
@@ -18,12 +17,11 @@ import validator from 'validator';
     }
 
     // Validate email format
-   
 
-const email = req.body.email;
-if (!validator.isEmail(email)) {
-  return res.status(400).json({ message: "Invalid email address" });
-}
+    const email = req.body.email;
+    if (!validator.isEmail(email)) {
+      return res.status(400).json({ message: "Invalid email address" });
+    }
 
     //Check the length of password
     const password = req.body.password;
@@ -35,7 +33,9 @@ if (!validator.isEmail(email)) {
       });
     }
     // Check username or email already exists
-    const usernameExists = await UserModel.findOne({ username: req.body.username });
+    const usernameExists = await UserModel.findOne({
+      username: req.body.username,
+    });
     const emailExists = await UserModel.findOne({ email: req.body.email });
     if (usernameExists || emailExists) {
       return res.status(400).json({
@@ -68,12 +68,11 @@ if (!validator.isEmail(email)) {
 };
 
 //login
- export const Login=async (req, res) => {
+export const Login = async (req, res) => {
   try {
-   
     const { username, password } = req.body;
     const user = await UserModel.findOne({ username });
-    console.log("userId",user._id);
+    // console.log("userId",user._id);
     if (!user) {
       return res.status(400).json({ message: "Invalid Credentials" });
     }
@@ -97,20 +96,18 @@ if (!validator.isEmail(email)) {
         return res.status(400).json({ message: "Invalid credentials" });
       }
     });
-
-   
   } catch (error) {
     return res.status(400).json({ message: "Internal Error" });
   }
 };
 
 //Get Users (individual) Profile Data
-export const getUserData= async (req, res) => {
+export const getUserData = async (req, res) => {
   try {
     const { id } = req.headers;
 
     const data = await UserModel.findById(id);
-    console.log("data->",data);
+    console.log("data->", data);
     return res.status(200).json(data);
   } catch (error) {
     return res.status(500).json({ message: "An error occurred in profile" });
@@ -118,7 +115,7 @@ export const getUserData= async (req, res) => {
 };
 
 //Update address
-export const UpdateUserAddress= async (req, res) => {
+export const UpdateUserAddress = async (req, res) => {
   try {
     const { id } = req.headers;
     const { address } = req.body;
@@ -133,3 +130,40 @@ export const UpdateUserAddress= async (req, res) => {
   }
 };
 
+export const updateAvatar = async (req, res) => {
+  try {
+    const { id } = req.headers;
+    if (!req.file) {
+      return res.status(400).json({
+        message: "File not uploaded",
+        success: false,
+      });
+    }
+    console.log("file", req.file);
+    const avatarUrl = await uploadCloudinary(req.file);
+    console.log("avatarurl->>>>", req.user._id);
+    const updatedUser = await UserModel.findByIdAndUpdate(
+      id,
+      { avatar: avatarUrl },
+      { new: true },
+    );
+
+    if (!updatedUser) {
+      return res.status(404).json({
+        message: "User not found",
+        success: false,
+      });
+    }
+
+    return res.status(200).json({
+      message: "Avatar updated successfully",
+      success: true,
+      updatedUser,
+    });
+  } catch (error) {
+    return res.status(500).json({
+      message: "kapil backend",
+      success: false,
+    });
+  }
+};

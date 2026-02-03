@@ -9,7 +9,12 @@ export const PlaceOrder=async (req, res) => {
     const { id } = req.headers;
     const { order } = req.body;
     for (const orderData of order) {
-      const newOrder = new OrderModel({ user: id, book: orderData._id });
+      const newOrder = new OrderModel(
+        {
+           user: id, 
+           book: orderData._id 
+          }
+        );
       const orderDataFromDb = await newOrder.save();
       //saving Order in user model
       await UserModel.findByIdAndUpdate(id, {

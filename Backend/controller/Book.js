@@ -1,21 +1,17 @@
-
-
-import Book from "../models/BookModel.js";
-
-
-import User from "../models/UserModel.js";
+import BookModel from "../models/BookModel.js";
+// import User from "../models/UserModel.js";
 import uploadCloudinary from "../Middleware/Cloudinary.js";
 //create book -- admin
-export const AddBook= async (req, res) => {
+export const AddBook = async (req, res) => {
   try {
-let Imageurl;
+    let Imageurl;
 
-    if(req.file){
-      console.log("file",req.file);
-      const image=await uploadCloudinary(req.file);
-      Imageurl=image ;
+    if (req.file) {
+      console.log("file", req.file);
+      const image = await uploadCloudinary(req.file);
+      Imageurl = image;
     }
-    const book = new Book({
+    const book = new BookModel({
       url: Imageurl,
       title: req.body.title,
       author: req.body.author,
@@ -23,11 +19,11 @@ let Imageurl;
       desc: req.body.desc,
       language: req.body.language,
     });
-    await book.save();
+    await BookModel.save();
     return res.json({
       status: "Success",
       message: "Book added successfully!",
-       data:book
+      data: book,
     });
   } catch (error) {
     console.log(error);
@@ -36,10 +32,10 @@ let Imageurl;
 };
 
 //update book --admin
-export const UpdateBook=async (req, res) => {
+export const UpdateBook = async (req, res) => {
   try {
     const { bookid } = req.headers;
-    await Book.findByIdAndUpdate(bookid, {
+    await BookModel.findByIdAndUpdate(bookid, {
       url: req.body.url,
       title: req.body.title,
       author: req.body.author,
@@ -59,10 +55,10 @@ export const UpdateBook=async (req, res) => {
 };
 
 //delete book --admin
-export const  DeleteBook= async (req, res) => {
+export const DeleteBook = async (req, res) => {
   try {
     const { bookid } = req.headers;
-    await Book.findByIdAndDelete(bookid);
+    await BookModel.findByIdAndDelete(bookid);
     return res.json({
       status: "Success",
       message: "Book deleted successfully!",
@@ -74,9 +70,9 @@ export const  DeleteBook= async (req, res) => {
 };
 
 //get all books
-export const  GetAllBooks= async (req, res) => {
+export const GetAllBooks = async (req, res) => {
   try {
-    const books = await Book.find().sort({ createdAt: -1 });
+    const books = await BookModel.find().sort({ createdAt: -1 });
     return res.json({
       status: "Success",
       data: books,
@@ -90,7 +86,7 @@ export const  GetAllBooks= async (req, res) => {
 //get recently added books
 export const GetRecentBooks = async (req, res) => {
   try {
-    const books = await Book.find().sort({ createdAt: -1 }).limit(4);
+    const books = await BookModel.find().sort({ createdAt: -1 }).limit(4);
     return res.json({
       status: "Success",
       data: books,
@@ -102,10 +98,10 @@ export const GetRecentBooks = async (req, res) => {
 };
 
 //get book by id
-export const  GetBookById= async (req, res) => {
+export const GetBookById = async (req, res) => {
   try {
     const { id } = req.params;
-    const book = await Book.findById(id);
+    const book = await BookModel.findById(id);
     return res.json({
       status: "Success",
       data: book,
@@ -115,5 +111,3 @@ export const  GetBookById= async (req, res) => {
     return res.status(500).json({ message: "An error occurred" });
   }
 };
-
-

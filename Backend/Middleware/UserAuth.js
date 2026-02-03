@@ -1,6 +1,6 @@
-import jwt from 'jsonwebtoken'
+import jwt from "jsonwebtoken";
 
-const UserAuth=async (req, res, next) => {
+const UserAuth = async (req, res, next) => {
   const authHeader = req.headers["authorization"];
   const token = authHeader && authHeader.split(" ")[1];
 
@@ -12,8 +12,9 @@ const UserAuth=async (req, res, next) => {
     if (err) {
       return res.status(403).json(err);
     }
-    
+
     req.user = user;
+    // req.userId = user._id;
     next();
   });
 };
