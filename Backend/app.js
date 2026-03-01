@@ -12,7 +12,10 @@ import dotenv from "dotenv";
 dotenv.config();
 
 const PORT = process.env.PORT || 1100;
-app.use(cors());
+app.use(cors({
+  origin:"https://bookstorewithadmin-backend.onrender.com",
+  credentials:true
+}));
 app.use(express.json());
 
 //Calling Routes
