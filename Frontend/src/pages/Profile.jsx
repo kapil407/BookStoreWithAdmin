@@ -23,7 +23,7 @@ const Profile = () => {
     } else {
       const fetch = async () => {
         const response = await axios.get(
-          "http://localhost:1000/api/v1/getUserData",
+          "https://bookstorewithadmin-backend.onrender.com/getUserData",
           { headers },
         );
         console.log("res in getUserdata", response);
@@ -41,7 +41,7 @@ const Profile = () => {
       console.log("image", image);
       setLoading(true);
       const res = await axios.post(
-        "http://localhost:1000/api/v1/updateAdminProfilePic",
+        "https://bookstorewithadmin-backend.onrender.com/updateAdminProfilePic",
         formdata,
         {
           headers,

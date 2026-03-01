@@ -16,7 +16,7 @@ const UpdateBooks = () => {
     window.scrollTo(0, 0);
     const fetch = async () => {
       const res = await axios.get(
-        `http://localhost:1000/api/v1/get-book-by-id/${id}`
+        `https://bookstorewithadmin-backend.onrender.com/get-book-by-id/${id}`
       );
 
       setData({
@@ -53,7 +53,7 @@ const UpdateBooks = () => {
         alert("All fields are required");
       } else {
         const response = await axios.put(
-          "http://localhost:1000/api/v1/update-book",
+          "https://bookstorewithadmin-backend.onrender.com/update-book",
           Data,
           { headers }
         );

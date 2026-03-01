@@ -25,7 +25,7 @@ const Cart = () => {
     } else {
       const fetch = async () => {
         const res = await axios.get(
-          "http://localhost:1000/api/v1/get-user-cart",
+          "https://bookstorewithadmin-backend.onrender.com/get-user-cart",
           { headers }
         );
             console.log("API Response ->", res);
@@ -48,7 +48,7 @@ const Cart = () => {
   const deletItem = async (id) => {
     try {
       const response = await axios.put(
-        `http://localhost:1000/api/v1/remove-from-cart/${id}`,
+        `https://bookstorewithadmin-backend.onrender.com/remove-from-cart/${id}`,
         {},
         { headers }
       );
@@ -60,7 +60,7 @@ const Cart = () => {
   const PlaceOrder = async () => {
     try {
       const response = await axios.post(
-        `http://localhost:1000/api/v1/place-order`,
+        `https://bookstorewithadmin-backend.onrender.com/place-order`,
         { order: cart },
         { headers }
       );

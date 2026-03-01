@@ -11,7 +11,7 @@ const OrderHistory = () => {
   useEffect(() => {
     const fetch = async () => {
       const res = await axios.get(
-        "http://localhost:1000/api/v1/get-order-history",
+        "https://bookstorewithadmin-backend.onrender.com/get-order-history",
         { headers }
       );
 
