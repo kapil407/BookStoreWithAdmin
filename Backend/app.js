@@ -13,7 +13,7 @@ dotenv.config();
 
 const PORT = process.env.PORT || 1100;
 app.use(cors({
-  origin:"https://bookstorewithadmin-backend.onrender.com",
+  origin:"https://bookstorewithadmin-frontend.onrender.com",
   credentials:true
 }));
 app.use(express.json());
