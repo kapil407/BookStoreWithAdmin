@@ -23,11 +23,11 @@ const Footer = () => {
         <div className="flex flex-col md:flex-row">
           {links.map((items, i) => (
             <Link
-              to={items.link}
+              to={items?.link}
               key={i}
               className="ms-4 text-zinc-300 hover:text-zinc-100"
             >
-              {items.title}{" "}
+              {items?.title}{" "}
             </Link>
           ))}
         </div>

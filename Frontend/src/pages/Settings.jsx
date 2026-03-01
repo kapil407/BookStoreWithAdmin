@@ -20,7 +20,7 @@ const Settings = () => {
         { headers }
       );
       setProfileData(response.data);
-      setValue({ address: response.data.address });
+      setValue({ address: response?.data?.address });
     };
     fetch();
   }, []);
@@ -33,7 +33,7 @@ const Settings = () => {
         headers,
       }
     );
-    alert(res.data.message);
+    alert(res?.data?.message);
   };
   return (
     <>
@@ -48,13 +48,13 @@ const Settings = () => {
             <div className="">
               <label htmlFor="">Username</label>
               <p className="p-2 rounded bg-zinc-800 mt-2 font-semibold">
-                {ProfileData.username}
+                {ProfileData?.username}
               </p>
             </div>
             <div className="">
               <label htmlFor="">Email</label>
               <p className="p-2 rounded bg-zinc-800 mt-2 font-semibold">
-                {ProfileData.email}
+                {ProfileData?.email}
               </p>
             </div>
           </div>
@@ -65,7 +65,7 @@ const Settings = () => {
               rows="5"
               placeholder="Address"
               name="address"
-              value={Value.address}
+              value={Value?.address}
               onChange={change}
             />
           </div>

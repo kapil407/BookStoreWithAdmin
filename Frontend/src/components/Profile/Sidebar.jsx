@@ -24,7 +24,7 @@ const Sidebar = ({
           <ClipLoader className="h-45" />
         ) : (
           <img
-            src={ProfileData.avatar}
+            src={ProfileData?.avatar}
             alt="profile"
             className="h-[15vh] w-[45%]  object-cover rounded-full"
           />
@@ -49,9 +49,9 @@ const Sidebar = ({
           </button>
         )}
         <p className="mt-3 text-xl text-zinc-100 font-semibold">
-          {ProfileData.username}
+          {ProfileData?.username}
         </p>
-        <p className="mt-1 text-normal text-zinc-300 ">{ProfileData.email}</p>
+        <p className="mt-1 text-normal text-zinc-300 ">{ProfileData?.email}</p>
         <div className="w-full mt-4 h-[1px] bg-zinc-500 hidden lg:block"></div>
       </div>
       {role !== "admin" && (

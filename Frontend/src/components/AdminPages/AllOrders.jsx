@@ -24,7 +24,7 @@ const AllOrders = () => {
         { headers }
       );
 
-      setOrderHistory(res.data.data);
+      setOrderHistory(res?.data?.data);
     };
     fetch();
   }, [OrderHistory]);
@@ -41,13 +41,13 @@ const AllOrders = () => {
       { headers }
     );
     console.log("changes", response);
-    alert(response.data.message);
+    alert(response?.data?.message);
   };
 
   return (
     <>
       {!OrderHistory && <Loader />}
-      {OrderHistory && OrderHistory.length === 0 && (
+      {OrderHistory && OrderHistory?.length === 0 && (
         <div className="h-[80vh] p-4 text-zinc-100 ">
           <div className="h-[100%] flex flex-col items-center justify-center">
             <h1 className="text-5xl font-semibold text-zinc-500 mb-8">
@@ -162,7 +162,7 @@ const AllOrders = () => {
                   className=" text-xl hover:text-orange-500"
                   onClick={() => {
                     setuserDiv("fixed");
-                    setuserDivData(items.user);
+                    setuserDivData(items?.user);
                   }}
                 >
                   <IoOpenOutline />

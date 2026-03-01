@@ -27,7 +27,7 @@ const Profile = () => {
           { headers },
         );
         console.log("res in getUserdata", response);
-        setProfileData(response.data);
+        setProfileData(response?.data);
       };
       fetch();
     }
@@ -49,7 +49,7 @@ const Profile = () => {
       );
       console.log("res->>", res);
 
-      setProfileData(res.data.updatedUser);
+      setProfileData(res?.data?.updatedUser);
       setImage(null);
     } catch (error) {
       console.log("error->>>", error);

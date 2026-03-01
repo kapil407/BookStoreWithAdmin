@@ -19,7 +19,7 @@ const ViewBookDetails = () => {
       const res = await axios.get(
         `https://bookstorewithadmin-backend.onrender.com/get-book-by-id/${id}`
       );
-      setBook(res.data.data);
+      setBook(res?.data?.data);
     };
     fetch();
   }, []);
@@ -35,7 +35,7 @@ const ViewBookDetails = () => {
         {},
         { headers }
       );
-      alert(response.data.message);
+      alert(response?.data?.message);
     } catch (error) {
       console.log(error);
     }
@@ -47,7 +47,7 @@ const ViewBookDetails = () => {
         {},
         { headers }
       );
-      alert(response.data.message);
+      alert(response?.data?.message);
     } catch (error) {
       console.log(error);
     }
@@ -58,7 +58,7 @@ const ViewBookDetails = () => {
         "https://bookstorewithadmin-backend.onrender.com/delete-book",
         { headers }
       );
-      alert(response.data.message);
+      alert(response?.data?.message);
       history("/all-books");
     } catch (error) {
       console.log(error);
@@ -73,7 +73,7 @@ const ViewBookDetails = () => {
           <div className="w-full lg:w-3/6 ">
             <div className=" flex flex-col md:flex-row items-start justify-around  bg-zinc-800 rounded px-4 py-8 gap-4 ">
               <img
-                src={Book.url}
+                src={Book?.url}
                 alt="book"
                 className="h-[50vh] md:h-[70vh] rounded object-cover"
               />
@@ -119,15 +119,15 @@ const ViewBookDetails = () => {
           </div>
           <div className="w-full lg:w-3/6 my-8">
             <h1 className="text-4xl text-zinc-300 font-semibold">
-              {Book.title}
+              {Book?.title}
             </h1>
-            <p className="text-zinc-400 mt-1">by {Book.author}</p>
-            <p className="text-zinc-500 mt-4 text-xl">{Book.desc}</p>
+            <p className="text-zinc-400 mt-1">by {Book?.author}</p>
+            <p className="text-zinc-500 mt-4 text-xl">{Book?.desc}</p>
             <p className="flex mt-4 items-center justify-start text-zinc-400">
-              <GrLanguage className="me-3" /> {Book.language}
+              <GrLanguage className="me-3" /> {Book?.language}
             </p>
             <p className="mt-4 text-zinc-100 text-3xl font-semibold">
-              Price : ₹ {Book.price}{" "}
+              Price : ₹ {Book?.price}{" "}
             </p>
           </div>
         </div>

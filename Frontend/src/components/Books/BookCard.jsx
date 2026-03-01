@@ -14,7 +14,7 @@ const BookCard = ({ image, title, author, price, bookid, fav }) => {
         {},
         { headers }
       );
-      alert(response.data.message);
+      alert(response?.data?.message);
     } catch (error) {
       console.log(error);
     }

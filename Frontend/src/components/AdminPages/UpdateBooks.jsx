@@ -20,12 +20,12 @@ const UpdateBooks = () => {
       );
 
       setData({
-        url: res.data.data.url,
-        title: res.data.data.title,
-        author: res.data.data.author,
-        price: res.data.data.price,
-        desc: res.data.data.desc,
-        language: res.data.data.language,
+        url: res?.data?.data?.url,
+        title: res?.data?.data?.title,
+        author: res?.data?.data?.author,
+        price: res?.data?.data?.price,
+        desc: res?.data?.data?.desc,
+        language: res?.data?.data?.language,
       });
     };
     fetch();
@@ -61,7 +61,7 @@ const UpdateBooks = () => {
         history(`/view-book-details/${id}`);
       }
     } catch (error) {
-      alert(error.response.data.message);
+      alert(error?.response?.data?.message);
     }
   };
 
@@ -109,7 +109,7 @@ const UpdateBooks = () => {
             placeholder="author of book"
             name="author"
             required
-            value={Data.author}
+            value={Data?.author}
             onChange={change}
           />
         </div>
@@ -124,7 +124,7 @@ const UpdateBooks = () => {
               placeholder="language of book"
               name="language"
               required
-              value={Data.language}
+              value={Data?.language}
               onChange={change}
             />
           </div>
@@ -138,7 +138,7 @@ const UpdateBooks = () => {
               placeholder="price of book"
               name="price"
               required
-              value={Data.price}
+              value={Data?.price}
               onChange={change}
             />
           </div>
@@ -153,7 +153,7 @@ const UpdateBooks = () => {
             placeholder="description of book"
             name="desc"
             required
-            value={Data.desc}
+            value={Data?.desc}
             onChange={change}
           />
         </div>

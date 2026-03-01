@@ -37,9 +37,9 @@ const Cart = () => {
   useEffect(() => {
     if (cart && cart.length > 0) {
       let total = 0;
-      cart.map((items) => {
+      cart?.map((items) => {
         // console.log("price->",items.price);
-        total += items.price;
+        total += items?.price;
       });
       setTotal(total);
       total = 0;
@@ -122,7 +122,7 @@ const Cart = () => {
                 </h2>
                 <button
                   className="bg-red-100 text-red-700 border border-red-700 rounded p-2 ms-12"
-                  onClick={() => deletItem(items._id)}
+                  onClick={() => deletItem(items?._id)}
                 >
                   <AiFillDelete />
                 </button>
@@ -138,7 +138,7 @@ const Cart = () => {
               Total Amount
             </h1>
             <div className="mt-3 flex items-center justify-between text-xl text-zinc-200">
-              <h2>{cart.length} books</h2> <h2>₹ {Total}</h2>
+              <h2>{cart?.length} books</h2> <h2>₹ {Total}</h2>
             </div>
             <div className="w-[100%] mt-3">
               <button

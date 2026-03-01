@@ -30,10 +30,10 @@ const Login = () => {
         setData({ username: "", password: "" });
         dispatch(authActions.login());
         history("/profile");
-        dispatch(authActions.changeRole(response.data.role));
-        localStorage.setItem("id", response.data._id);
-        localStorage.setItem("token", response.data.token);
-        localStorage.setItem("role", response.data.role);
+        dispatch(authActions.changeRole(response?.data?.role));
+        localStorage.setItem("id", response?.data?._id);
+        localStorage.setItem("token", response?.data?.token);
+        localStorage.setItem("role", response?.data?.role);
       }
     } catch (error) {
       alert(error.response.data.message);
@@ -54,7 +54,7 @@ const Login = () => {
               placeholder="username"
               name="username"
               required
-              value={Data.username}
+              value={Data?.username}
               onChange={change}
             />
           </div>
@@ -68,7 +68,7 @@ const Login = () => {
               placeholder="password"
               name="password"
               required
-              value={Data.password}
+              value={Data?.password}
               onChange={change}
             />
           </div>

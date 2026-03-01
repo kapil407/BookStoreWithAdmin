@@ -35,7 +35,7 @@ const Signup = () => {
           Data,
         );
         setData({ username: "", email: "", password: "", address: "" });
-        alert(response.data.message);
+        alert(response?.data?.message);
         history("/login");
       }
     } catch (error) {
@@ -57,7 +57,7 @@ const Signup = () => {
               placeholder="username"
               name="username"
               required
-              value={Data.username}
+              value={Data?.username}
               onChange={change}
             />
           </div>
@@ -71,7 +71,7 @@ const Signup = () => {
               placeholder="xyz@example.com"
               name="email"
               required
-              value={Data.email}
+              value={Data?.email}
               onChange={change}
             />
           </div>
@@ -85,7 +85,7 @@ const Signup = () => {
               placeholder="password"
               name="password"
               required
-              value={Data.password}
+              value={Data?.password}
               onChange={change}
             />
           </div>
@@ -99,7 +99,7 @@ const Signup = () => {
               placeholder="address"
               name="address"
               required
-              value={Data.address}
+              value={Data?.address}
               onChange={change}
             />
           </div>

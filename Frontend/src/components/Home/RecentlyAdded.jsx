@@ -8,7 +8,7 @@ const RecentlyAdded = () => {
       const response = await axios.get(
         "https://bookstorewithadmin-backend.onrender.com/get-recent-books"
       );
-      setBooks(response.data.data);
+      setBooks(response?.data?.data);
     };
     fetch();
   }, []);
@@ -21,11 +21,11 @@ const RecentlyAdded = () => {
           <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4  gap-8 mt-8">
             {Books.map((items, i) => (
               <BookCard
-                bookid={items._id}
-                image={items.url}
-                title={items.title}
-                author={items.author}
-                price={items.price}
+                bookid={items?._id}
+                image={items?.url}
+                title={items?.title}
+                author={items?.author}
+                price={items?.price}
                 key={i}
               />
             ))}

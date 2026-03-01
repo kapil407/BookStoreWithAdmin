@@ -23,18 +23,18 @@ const SeeUserData = ({ userDivData, userDiv, setuserDiv }) => {
           <div className="mt-2">
             <label htmlFor="">
               Username :{" "}
-              <span className="font-semibold">{userDivData.username}</span>
+              <span className="font-semibold">{userDivData?.username}</span>
             </label>
           </div>
           <div className="mt-4">
             <label htmlFor="">
-              Email : <span className="font-semibold">{userDivData.email}</span>
+              Email : <span className="font-semibold">{userDivData?.email}</span>
             </label>
           </div>
           <div className="mt-4">
             <label htmlFor="">
               Address :{" "}
-              <span className="font-semibold">{userDivData.address}</span>
+              <span className="font-semibold">{userDivData?.address}</span>
             </label>
           </div>
         </div>

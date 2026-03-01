@@ -128,15 +128,15 @@ const Navbar = () => {
       </nav>
       <div className={`5/6 ${Nav} lg:hidden bg-zinc-800  text-white px-12`}>
         <div className="flex flex-col items-center">
-          {links.map((items, i) => (
+          {links?.map((items, i) => (
             <>
-              {items.title === "Profile" || items.title === "Admin Profile" ? (
+              {items?.title === "Profile" || items?.title === "Admin Profile" ? (
                 <div
                   className=" rounded  hover:cursor-pointer border border-blue-500 px-3 py-1 my-3 hover:bg-white hover:text-zinc-900 transition-all duration-300"
                   key={i}
                 >
                   <Link
-                    to={`${items.link}`}
+                    to={`${items?.link}`}
                     className="text-normal"
                     onClick={() => setNav("hidden")}
                   >
@@ -149,7 +149,7 @@ const Navbar = () => {
                   key={i}
                 >
                   <Link
-                    to={`${items.link}`}
+                    to={`${items?.link}`}
                     className="text-normal"
                     onClick={() => setNav("hidden")}
                   >

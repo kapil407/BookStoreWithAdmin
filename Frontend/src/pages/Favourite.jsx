@@ -15,7 +15,7 @@ const Favourite = () => {
         { headers }
       );
 
-      setFavBooks(res.data.data);
+      setFavBooks(res?.data?.data);
     };
     fetch();
   });
@@ -41,11 +41,11 @@ const Favourite = () => {
           <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3  gap-8">
             {FavBooks.map((items, i) => (
               <BookCard
-                bookid={items._id}
-                image={items.url}
-                title={items.title}
-                author={items.author}
-                price={items.price}
+                bookid={items?._id}
+                image={items?.url}
+                title={items?.title}
+                author={items?.author}
+                price={items?.price}
                 key={i}
                 fav={true}
               />
