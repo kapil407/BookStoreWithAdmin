@@ -139,9 +139,9 @@ export const updateAvatar = async (req, res) => {
         success: false,
       });
     }
-    console.log("file", req.file);
+    // console.log("file", req.file);
     const avatarUrl = await uploadCloudinary(req.file);
-    console.log("avatarurl->>>>", req.user._id);
+    // console.log("avatarurl->>>>", req.user._id);
     const updatedUser = await UserModel.findByIdAndUpdate(
       id,
       { avatar: avatarUrl },

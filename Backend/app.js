@@ -1,21 +1,17 @@
-import express from 'express'
+import express from "express";
 const app = express();
-import cors from 'cors'
+import cors from "cors";
 
-
-
-
-
-import Bookrouter from './routes/book.js';
-import CartRouter from './routes/Cart.js'
-import FavouriteBookRouter from './routes/Favourite.js'
-import OrderRouter from './routes/Order.js'
-import UserRouter from './routes/User.js'
-import ConnectDB from './config/ConnectDB.js';
-import dotenv from 'dotenv'
+import Bookrouter from "./routes/book.js";
+import CartRouter from "./routes/Cart.js";
+import FavouriteBookRouter from "./routes/Favourite.js";
+import OrderRouter from "./routes/Order.js";
+import UserRouter from "./routes/User.js";
+import ConnectDB from "./config/ConnectDB.js";
+import dotenv from "dotenv";
 dotenv.config();
 
-const PORT = process.env.PORT || 1000;
+const PORT = process.env.PORT || 1100;
 app.use(cors());
 app.use(express.json());
 
@@ -27,8 +23,11 @@ app.use("/api/v1", FavouriteBookRouter);
 app.use("/api/v1", OrderRouter);
 
 //SERVER
-app.listen(PORT, () => {
-
+ ConnectDB().then(()=>{
+      console.log("database is connected");
+      app.listen(PORT, () => {
   console.log(`Server Started at PORT : ${PORT} `);
-    ConnectDB();
-});
+ })
+ }).catch((error=>{
+    console.log("server is not runing ",error);
+ }))
