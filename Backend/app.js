@@ -24,6 +24,9 @@ app.use("/api/v1", Bookrouter);
 app.use("/api/v1", CartRouter);
 app.use("/api/v1", FavouriteBookRouter);
 app.use("/api/v1", OrderRouter);
+app.get("/", (req, res) => {
+  res.status(200).send("Backend is running");
+});
 
 //SERVER
  ConnectDB().then(()=>{
