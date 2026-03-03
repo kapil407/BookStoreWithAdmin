@@ -19,11 +19,11 @@ app.use(cors({
 app.use(express.json());
 
 //Calling Routes
-app.use("/api/v1", UserRouter);
-app.use("/api/v1", Bookrouter);
-app.use("/api/v1", CartRouter);
-app.use("/api/v1", FavouriteBookRouter);
-app.use("/api/v1", OrderRouter);
+app.use("/", UserRouter);
+app.use("/", Bookrouter);
+app.use("/", CartRouter);
+app.use("/", FavouriteBookRouter);
+app.use("/", OrderRouter);
 app.get("/", (req, res) => {
   res.status(200).send("Backend is running");
 });
