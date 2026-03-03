@@ -3,10 +3,14 @@ import BookCard from "../Books/BookCard";
 import axios from "axios";
 const RecentlyAdded = () => {
   const [Books, setBooks] = useState();
+   const headers = {
+    id: localStorage?.getItem("id"),
+    authorization: `Bearer ${localStorage?.getItem("token")}`,
+  };
   useEffect(() => {
     const fetch = async () => {
       const response = await axios.get(
-        "https://bookstorewithadmin-backend.onrender.com/get-recent-books"
+        "https://bookstorewithadmin-backend.onrender.com/get-recent-books",{headers}
       );
       setBooks(response?.data?.data);
     };
